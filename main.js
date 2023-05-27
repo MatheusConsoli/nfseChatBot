@@ -114,11 +114,13 @@ bot.on('message', async (msg) => {
                       console.log("Inicia o Robo, e exclui a sessão do banco")
                       try {
 
-                        await rpa.acessarSite(session);
+                        //await rpa.acessarSite(session);
                         bot.sendMessage(chatId, 'Documento emitido com sucesso!');    
 
                         sendImage(chatId,"C:/Users/VM/Desktop/Trabalho/OneDrive - S2M CONSULTORIA E SISTEMAS LTDA EPP/Bkp PC/FATEC/JS/Puppeteer/testes/emitido.png")
-                        simulateMessage('a',chatId, userId);
+
+                        chat.endSession(userId)
+                        //simulateMessage('a',chatId, userId);
                         
                       } catch (error) {
                         console.log(error)
@@ -145,7 +147,7 @@ function sendImage(chatId, imagePath) {
 
   // Read the image file as a buffer
   const imageBuffer = fs.readFileSync(imagePath);
-  let caption = "Segue evidencia de que o documento foi emitido com sucesso."
+  let caption = "Segue evidencia de que o documento foi emitido com sucesso.\nPara iniciar uma nova emissão, por gentileza digite /start"
   
   // Send the photo
   bot.sendPhoto(chatId, imageBuffer, { caption })
