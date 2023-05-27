@@ -20,7 +20,7 @@ let rpa = new RPA();
 */
 
 bot.onText(/\/start/, (msg) => {
-    bot.sendMessage(msg.chat.id, "Welcome to my bot!", {
+    bot.sendMessage(msg.chat.id, "Bem vindo ao Bot Emissor de Notas Fiscal de Serviço, caso queira emitir um documento fiscal digite ou clique em /start que iniciaremos o processo!", {
 
     });
     console.log(msg.text)
@@ -119,6 +119,7 @@ bot.on('message', async (msg) => {
 
                         sendImage(chatId,"C:/Users/VM/Desktop/Trabalho/OneDrive - S2M CONSULTORIA E SISTEMAS LTDA EPP/Bkp PC/FATEC/JS/Puppeteer/testes/emitido.png")
 
+
                         chat.endSession(userId)
                         //simulateMessage('a',chatId, userId);
                         
@@ -143,6 +144,8 @@ bot.on('message', async (msg) => {
         
 });
 
+
+
 function sendImage(chatId, imagePath) {
 
   // Read the image file as a buffer
@@ -157,6 +160,8 @@ function sendImage(chatId, imagePath) {
     .catch((error) => {
       console.error('Error sending image:', error);
     });
+
+  fs.unlink(imagePath);  
 }
   
 function simulateMessage(text, chatId, userId) {
